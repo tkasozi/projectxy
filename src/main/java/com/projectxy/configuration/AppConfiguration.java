@@ -23,7 +23,7 @@ import com.projectxy.models.UserDao;
 @EnableTransactionManagement
 public class AppConfiguration {
 	@Value("${mysql.datasource.url}")
-	public String jdbcMysqlUrl;
+	public String jdbcMysqlUrl; 
 
 	@Value("${mysql.datasource.username}")
 	public String datasourceUsername;
@@ -69,6 +69,7 @@ public class AppConfiguration {
 	@Autowired
 	@Bean(name = "transactionManager")
 	public HibernateTransactionManager getTransactionManager(@Qualifier("sessionFactory") SessionFactory sessionFactory) {
+		UserDao.logger.debug("hello");
 		HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
 		return transactionManager;
 	}

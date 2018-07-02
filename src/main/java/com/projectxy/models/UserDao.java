@@ -11,20 +11,27 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.projectxy.controller.userRoutesController;
 
 @Repository
 public class UserDao<T> {
 	private SessionFactory sessionFactory;
 	private Class<T> clazz;
 
+	public static final Logger logger = LoggerFactory.getLogger(UserDao.class);
+
+	
 	public UserDao(SessionFactory sessionFactory, Class<T> clazz) {
 		this.sessionFactory = sessionFactory;
 		this.clazz = clazz;
 	}
-
+ 
 	@Transactional
 	public List<T> list() {
 		@SuppressWarnings("unchecked")
@@ -36,6 +43,10 @@ public class UserDao<T> {
 	@Transactional
 	public T get(Serializable id) {
 		String hql = "from " + clazz.getSimpleName() + " where id=" + id;
+		
+		logger.debug("DEBUGGIN ********* "+hql);
+		
+		
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 
 		@SuppressWarnings("unchecked")
