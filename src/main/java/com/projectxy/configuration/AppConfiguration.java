@@ -22,7 +22,7 @@ import com.projectxy.models.UserDao;
 @Configuration
 @EnableTransactionManagement
 public class AppConfiguration {
-	@Value("${mysql.datasource.url}")
+	@Value("${userDB.datasource.url}")
 	public String jdbcMysqlUrl; 
 
 	@Value("${mysql.datasource.username}")

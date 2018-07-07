@@ -1,0 +1,35 @@
+form{
+    /*border: 1px solid #000000;*/
+    width: 25em;
+    padding: 3rem;
+    margin: 3rem;
+}
+form section{
+    display: none;
+}
+
+form section input{
+    margin: 0.5rem;
+    padding: 1rem;
+    margin-right: 1rem;
+    width: 100%;
+}
+.hidden{
+    display: none;
+}
+section.active{
+    display: block;
+}
+
+.submitDiv {
+    padding: 3rem;
+    margin: 5rem;
+}
+.submitDiv input, .submitDiv button{
+    position: relative;
+    float: right;
+    right: 0%;
+    background-color: paleturquoise;
+    width: 7rem;
+    height: 3rem;
+}

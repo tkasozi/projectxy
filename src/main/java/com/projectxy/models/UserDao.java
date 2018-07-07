@@ -1,6 +1,9 @@
 
 /**
+ * 
  * tkasozi <talik.aziizi@gmail.com>
+ * 
+ * July 4, 2018
  */
 
 package com.projectxy.models;
@@ -16,8 +19,6 @@ import org.slf4j.LoggerFactory;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.projectxy.controller.userRoutesController;
 
 @Repository
 public class UserDao<T> {
@@ -41,12 +42,8 @@ public class UserDao<T> {
 	}
  
 	@Transactional
-	public T get(Serializable id) {
+	public T getById(Serializable id) {
 		String hql = "from " + clazz.getSimpleName() + " where id=" + id;
-		
-		logger.debug("DEBUGGIN ********* "+hql);
-		
-		
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 
 		@SuppressWarnings("unchecked")
@@ -57,7 +54,34 @@ public class UserDao<T> {
 		}
 		return null;
 	}
+	
+	@Transactional
+	public T getByUsername(Serializable username) {
+		String hql = "from " + clazz.getSimpleName() + " where userName=" + "'"+username + "'";
 
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		
+		@SuppressWarnings("unchecked")
+		List<T> listSentence = (List<T>) query.list();
+		
+		if (listSentence != null && !listSentence.isEmpty()) {
+			return listSentence.get(0);
+		}
+		
+		return null;
+	}
+
+	@Transactional
+	public boolean authenticate(Serializable username, Serializable password) {
+		String hql = "from " + clazz.getSimpleName() + " where userName=" 
+						+ "'"+username + "' and password= '"+ password +"'";
+
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		
+		logger.info("LOGGED: size. "+query.list().size());
+		return query.list().size() == 1;
+	}
+	
 	@Transactional
 	public void saveOrUpdate(T entityName) {
 		sessionFactory.getCurrentSession().saveOrUpdate(entityName);
@@ -65,7 +89,7 @@ public class UserDao<T> {
 
 	@Transactional
 	public void delete(Serializable id) {
-		T entity = get(id);
+		T entity = getById(id);
 		if (entity != null) {
 			sessionFactory.getCurrentSession().delete(entity);
 		}

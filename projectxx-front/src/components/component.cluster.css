@@ -1,0 +1,29 @@
+#cluster{
+    /*position: absolute;*/
+}
+.blue {
+    color: blue;
+}
+
+.clusterNode {
+    border-radius: 50%;
+    background: #73AD21;
+    padding: 20px; 
+    width: 5rem;
+    height: 5rem;
+} 
+
+.imgNode{
+    fill: crimson;
+    border-radius: 50%;
+    padding: 10px;
+    width: 5rem;
+    height: 5rem;
+}
+svg{
+    position: relative;
+}
+
+line{
+    stroke:rgb(255,0,0);stroke-width:2
+}

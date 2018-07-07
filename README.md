@@ -28,3 +28,20 @@
 
 		return  false;
 	}
+	
+	
+	  fetch("http://localhost:8080/api/user/"+this.state.username, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: this.state.username,
+                    password: this.state.password
+                })
+            })
+            .then(res => res.json())
+            .then(flag => {
+                flag? console.log("passed"): console.log("failed");
+            });

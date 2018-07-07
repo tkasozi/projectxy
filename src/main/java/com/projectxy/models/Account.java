@@ -15,6 +15,7 @@ public class Account {
 	private String firstName;
 	private String lastName;
 	private String email;
+	private String password;
 
 	
 	public Account(){}
@@ -71,6 +72,13 @@ public class Account {
 		this.email = email;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	@Override
 	public String toString() {
 		return "{\"id\": \"" + id + "\", \"userName\":\"" + userName + "\", \"name\":\"" + firstName + " "+ lastName + "\", \"email\":\""
